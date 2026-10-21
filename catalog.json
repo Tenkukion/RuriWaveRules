@@ -1,0 +1,117 @@
+{
+  "schema": 1,
+  "namespace": "ruriwave.official",
+  "bootstrapIds": [
+    "native:libvio",
+    "native:moonci",
+    "native:sorani",
+    "native:xifan-next",
+    "native:mgnacg",
+    "native:eacg",
+    "native:dm84",
+    "native:senfun",
+    "native:didahd",
+    "native:vdm",
+    "native:jibi",
+    "native:2kdm"
+  ],
+  "rules": [
+    {
+      "id": "native:libvio",
+      "file": "rules/libvio.json",
+      "defaultEnabled": true,
+      "ruleSchema": 1,
+      "minimumEngine": 1,
+      "maximumEngine": 1
+    },
+    {
+      "id": "native:moonci",
+      "file": "rules/moonci.json",
+      "defaultEnabled": true,
+      "ruleSchema": 1,
+      "minimumEngine": 1,
+      "maximumEngine": 1
+    },
+    {
+      "id": "native:sorani",
+      "file": "rules/sorani.json",
+      "defaultEnabled": true,
+      "ruleSchema": 1,
+      "minimumEngine": 1,
+      "maximumEngine": 1
+    },
+    {
+      "id": "native:xifan-next",
+      "file": "rules/xifan-next.json",
+      "defaultEnabled": true,
+      "ruleSchema": 1,
+      "minimumEngine": 1,
+      "maximumEngine": 1
+    },
+    {
+      "id": "native:mgnacg",
+      "file": "rules/mgnacg.json",
+      "defaultEnabled": true,
+      "ruleSchema": 1,
+      "minimumEngine": 1,
+      "maximumEngine": 1
+    },
+    {
+      "id": "native:eacg",
+      "file": "rules/eacg.json",
+      "defaultEnabled": true,
+      "ruleSchema": 1,
+      "minimumEngine": 1,
+      "maximumEngine": 1
+    },
+    {
+      "id": "native:dm84",
+      "file": "rules/DM84.json",
+      "defaultEnabled": false,
+      "ruleSchema": 1,
+      "minimumEngine": 1,
+      "maximumEngine": 1
+    },
+    {
+      "id": "native:senfun",
+      "file": "rules/senfun.json",
+      "defaultEnabled": false,
+      "ruleSchema": 1,
+      "minimumEngine": 1,
+      "maximumEngine": 1
+    },
+    {
+      "id": "native:didahd",
+      "file": "rules/didahd.json",
+      "defaultEnabled": false,
+      "ruleSchema": 1,
+      "minimumEngine": 1,
+      "maximumEngine": 1
+    },
+    {
+      "id": "native:vdm",
+      "file": "rules/vdm.json",
+      "defaultEnabled": false,
+      "ruleSchema": 1,
+      "minimumEngine": 1,
+      "maximumEngine": 1
+    },
+    {
+      "id": "native:jibi",
+      "file": "rules/jibi.json",
+      "defaultEnabled": false,
+      "ruleSchema": 1,
+      "minimumEngine": 1,
+      "maximumEngine": 1
+    },
+    {
+      "id": "native:2kdm",
+      "file": "rules/2kdm.json",
+      "defaultEnabled": false,
+      "ruleSchema": 1,
+      "minimumEngine": 1,
+      "maximumEngine": 1
+    }
+  ],
+  "retired": []
+}

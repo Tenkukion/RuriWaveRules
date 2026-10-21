@@ -1,0 +1,8 @@
+dist/
+.published/
+__pycache__/
+*.pem
+*.key
+*.p12
+*.pfx
+.env

@@ -1,0 +1,28 @@
+{
+  "schema": 1,
+  "id": "native:libvio",
+  "name": "LIBVIO · Ruri",
+  "version": "1",
+  "baseUrl": "https://libvio.host/",
+  "allowedOrigins": ["https://libvio.host"],
+  "search": {
+    "path": "/search/-------------.html",
+    "method": "GET",
+    "parameters": {"wd": "{query}"},
+    "acquisition": "browser",
+    "root": "body",
+    "items": "h4 a[href^='/detail/']",
+    "title": {"selector": "", "kind": "text"},
+    "reference": {"selector": "", "kind": "attribute", "attribute": "href"}
+  },
+  "catalog": {
+    "acquisition": "browser",
+    "root": "body",
+    "roads": "ul.stui-content__playlist",
+    "episodes": "li a[href]",
+    "title": {"selector": "", "kind": "text"},
+    "reference": {"selector": "", "kind": "attribute", "attribute": "href"}
+  },
+  "resolver": "browser",
+  "blockAds": false
+}

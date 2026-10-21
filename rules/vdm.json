@@ -1,0 +1,44 @@
+{
+  "schema": 1,
+  "id": "native:vdm",
+  "name": "VDM · Ruri",
+  "version": "1",
+  "baseUrl": "https://www.vdm5.com/",
+  "allowedOrigins": [
+    "https://www.vdm5.com"
+  ],
+  "search": {
+    "path": "/search_-------------.html",
+    "method": "GET",
+    "parameters": {
+      "wd": "{query}"
+    },
+    "root": "body",
+    "items": "ul.stui-vodlist__media h3.title a",
+    "title": {
+      "selector": "",
+      "kind": "text"
+    },
+    "reference": {
+      "selector": "",
+      "kind": "attribute",
+      "attribute": "href"
+    }
+  },
+  "catalog": {
+    "root": "body",
+    "roads": "ul.stui-content__playlist",
+    "episodes": "a",
+    "title": {
+      "selector": "",
+      "kind": "text"
+    },
+    "reference": {
+      "selector": "",
+      "kind": "attribute",
+      "attribute": "href"
+    }
+  },
+  "resolver": "browser",
+  "blockAds": false
+}

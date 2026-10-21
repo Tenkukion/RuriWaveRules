@@ -1,0 +1,46 @@
+{
+  "schema": 1,
+  "id": "native:2kdm",
+  "name": "2k动漫 · Ruri",
+  "version": "1",
+  "baseUrl": "https://www.2kdm.com/",
+  "allowedOrigins": [
+    "https://www.2kdm.com"
+  ],
+  "search": {
+    "path": "/index.php/ajax/suggest",
+    "method": "GET",
+    "parameters": {
+      "mid": "1",
+      "wd": "{query}"
+    },
+    "format": "json",
+    "root": "$",
+    "items": "$.list[*]",
+    "title": {
+      "selector": "$.name",
+      "kind": "json"
+    },
+    "reference": {
+      "selector": "$.id",
+      "kind": "json",
+      "template": "/voddetail/{value}.html"
+    }
+  },
+  "catalog": {
+    "root": "body",
+    "roads": ".module-play-list-content",
+    "episodes": "a.module-play-list-link",
+    "title": {
+      "selector": "",
+      "kind": "text"
+    },
+    "reference": {
+      "selector": "",
+      "kind": "attribute",
+      "attribute": "href"
+    }
+  },
+  "resolver": "browser",
+  "blockAds": false
+}

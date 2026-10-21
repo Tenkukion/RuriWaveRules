@@ -1,0 +1,17 @@
+{
+  "schema": 1, "id": "native:eacg", "name": "E-ACG · Ruri", "version": "1",
+  "baseUrl": "https://www.eacg1.com/", "allowedOrigins": ["https://www.eacg1.com"],
+  "search": {
+    "path": "/index.php/ajax/suggest", "method": "GET", "parameters": {"mid": "1", "wd": "{query}"},
+    "format": "json", "root": "$", "items": "$.list[*]",
+    "title": {"selector": "$.name", "kind": "json"},
+    "reference": {"selector": "$.id", "kind": "json", "template": "/voddetails-{value}.html"}
+  },
+  "catalog": {
+    "root": "body", "roads": ".fed-play-item.fed-drop-item.fed-visible > ul.fed-part-rows",
+    "episodes": "li a.fed-btns-info",
+    "title": {"selector": "", "kind": "text"},
+    "reference": {"selector": "", "kind": "attribute", "attribute": "href"}
+  },
+  "resolver": "browser", "blockAds": false
+}

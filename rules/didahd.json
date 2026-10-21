@@ -1,0 +1,44 @@
+{
+  "schema": 1,
+  "id": "native:didahd",
+  "name": "嘀嗒影视 · Ruri",
+  "version": "1",
+  "baseUrl": "https://www.didahd.xyz/",
+  "allowedOrigins": [
+    "https://www.didahd.xyz"
+  ],
+  "search": {
+    "path": "/search/-------------.html",
+    "method": "GET",
+    "parameters": {
+      "wd": "{query}"
+    },
+    "root": "body",
+    "items": "#searchList h4.title a",
+    "title": {
+      "selector": "",
+      "kind": "text"
+    },
+    "reference": {
+      "selector": "",
+      "kind": "attribute",
+      "attribute": "href"
+    }
+  },
+  "catalog": {
+    "root": "body",
+    "roads": "ul.myui-content__list.sort-list",
+    "episodes": "a",
+    "title": {
+      "selector": "",
+      "kind": "text"
+    },
+    "reference": {
+      "selector": "",
+      "kind": "attribute",
+      "attribute": "href"
+    }
+  },
+  "resolver": "browser",
+  "blockAds": false
+}

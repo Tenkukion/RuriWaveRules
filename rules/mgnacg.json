@@ -1,0 +1,46 @@
+{
+  "schema": 1,
+  "id": "native:mgnacg",
+  "name": "MGN 橘子动漫 · Ruri",
+  "version": "1",
+  "baseUrl": "https://www.mgnacg.com/",
+  "allowedOrigins": [
+    "https://www.mgnacg.com"
+  ],
+  "search": {
+    "path": "/index.php/ajax/suggest",
+    "method": "GET",
+    "parameters": {
+      "mid": "1",
+      "wd": "{query}"
+    },
+    "format": "json",
+    "root": "$",
+    "items": "$.list[*]",
+    "title": {
+      "selector": "$.name",
+      "kind": "json"
+    },
+    "reference": {
+      "selector": "$.id",
+      "kind": "json",
+      "template": "/media/{value}/"
+    }
+  },
+  "catalog": {
+    "root": "body",
+    "roads": "ul.anthology-list-play",
+    "episodes": "li a",
+    "title": {
+      "selector": "",
+      "kind": "text"
+    },
+    "reference": {
+      "selector": "",
+      "kind": "attribute",
+      "attribute": "href"
+    }
+  },
+  "resolver": "browser",
+  "blockAds": false
+}

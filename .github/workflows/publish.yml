@@ -1,0 +1,98 @@
+name: Explicit signed rules publication (disabled until owner activation)
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: New immutable release name
+        required: true
+      sequence:
+        description: Strictly increasing positive sequence
+        required: true
+      issued_at:
+        description: UTC ISO timestamp
+        required: true
+      expires_at:
+        description: UTC ISO timestamp, at most 31 days later
+        required: true
+permissions:
+  contents: read
+concurrency:
+  group: official-rules-publication
+  cancel-in-progress: false
+jobs:
+  publish:
+    if: github.ref_name == 'main' && vars.RULES_PUBLISH_ENABLED == 'true' && github.repository == vars.OFFICIAL_RULES_REPOSITORY
+    environment: rules-publish
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
+        with:
+          path: source
+          persist-credentials: false
+      - run: python3 -B tools/build_release.py validate && python3 -B -m unittest discover -s tests -v
+        working-directory: source
+      # First authorized publication may create a normal dedicated branch.
+      # No force push, tag mutation, private client checkout or commit deploy.
+      - name: Ensure append-only publication branch exists
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if ! gh api "repos/$GITHUB_REPOSITORY/git/ref/heads/published" >/dev/null 2>&1; then
+            gh api "repos/$GITHUB_REPOSITORY/git/refs" -f ref=refs/heads/published -f sha="$GITHUB_SHA" >/dev/null
+          fi
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
+        with:
+          ref: published
+          path: site
+      - name: Build, verify, then advance complete static artifact
+        working-directory: source
+        env:
+          RULE_KEY_PEM: ${{ secrets.RULES_ED25519_KEY_PEM }}
+          KEY_ID: ${{ vars.RULES_KEY_ID }}
+          PUBLIC_KEY: ${{ vars.RULES_PUBLIC_KEY }}
+          RELEASE_VERSION: ${{ inputs.version }}
+          RELEASE_SEQUENCE: ${{ inputs.sequence }}
+          ISSUED_AT: ${{ inputs.issued_at }}
+          EXPIRES_AT: ${{ inputs.expires_at }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          umask 077
+          key_file="$(mktemp "$RUNNER_TEMP/rules-key.XXXXXX")"
+          trap 'rm -f -- "$key_file"' EXIT
+          printf '%s' "$RULE_KEY_PEM" > "$key_file"
+          previous=()
+          if test -f ../site/dist/latest.json; then
+            python3 -c 'import base64,json;from pathlib import Path;p=Path("../site/dist/latest.json");Path("../previous-manifest.json").write_bytes(base64.b64decode(json.loads(p.read_text())["payload"],validate=True))'
+            previous=(--previous-manifest ../previous-manifest.json)
+          fi
+          python3 -B tools/build_release.py build --output ../site/dist --sequence "$RELEASE_SEQUENCE" --version "$RELEASE_VERSION" --revision "$GITHUB_SHA" --issued-at "$ISSUED_AT" --expires-at "$EXPIRES_AT" --key-file "$key_file" --key-id "$KEY_ID" --expected-public-key "$PUBLIC_KEY" "${previous[@]}"
+      - name: Persist immutable release history with a normal commit
+        working-directory: site
+        env:
+          RELEASE_VERSION: ${{ inputs.version }}
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          # published starts at main, whose dist/ is intentionally ignored.
+          # Only this reviewed generated directory may bypass that ignore.
+          git add -f -- dist
+          git commit -m "Publish signed rules $RELEASE_VERSION"
+          git push origin HEAD:published
+      - uses: actions/upload-pages-artifact@56afc609e74202658d3ffba0e8f6dda462b719fa # v3.0.1
+        with:
+          path: site/dist
+  deploy:
+    needs: publish
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e # v4.0.5

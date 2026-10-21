@@ -1,0 +1,44 @@
+{
+  "schema": 1,
+  "id": "native:dm84",
+  "name": "DM84 · Ruri",
+  "version": "1",
+  "baseUrl": "https://dmbus.cc/",
+  "allowedOrigins": [
+    "https://dmbus.cc"
+  ],
+  "search": {
+    "path": "/s----------.html",
+    "method": "GET",
+    "parameters": {
+      "wd": "{query}"
+    },
+    "root": "body",
+    "items": "ul.v_list > li",
+    "title": {
+      "selector": "a.title",
+      "kind": "text"
+    },
+    "reference": {
+      "selector": "a.title",
+      "kind": "attribute",
+      "attribute": "href"
+    }
+  },
+  "catalog": {
+    "root": "body",
+    "roads": "#play_list ul.play_list",
+    "episodes": "li a",
+    "title": {
+      "selector": "",
+      "kind": "text"
+    },
+    "reference": {
+      "selector": "",
+      "kind": "attribute",
+      "attribute": "href"
+    }
+  },
+  "resolver": "browser",
+  "blockAds": true
+}

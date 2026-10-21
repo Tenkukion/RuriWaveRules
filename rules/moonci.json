@@ -1,0 +1,44 @@
+{
+  "schema": 1,
+  "id": "native:moonci",
+  "name": "moonci · Ruri",
+  "version": "1",
+  "baseUrl": "https://www.moonci.com/",
+  "allowedOrigins": [
+    "https://www.moonci.com"
+  ],
+  "search": {
+    "path": "/search/-------------.html",
+    "method": "GET",
+    "parameters": {
+      "wd": "{query}"
+    },
+    "root": "body",
+    "items": "ul.hl-one-list > li.hl-list-item",
+    "title": {
+      "selector": ".hl-item-title a",
+      "kind": "text"
+    },
+    "reference": {
+      "selector": ".hl-item-title a",
+      "kind": "attribute",
+      "attribute": "href"
+    }
+  },
+  "catalog": {
+    "root": "body",
+    "roads": ".hl-play-source ul.hl-plays-list",
+    "episodes": "a[href*='/play/']",
+    "title": {
+      "selector": "",
+      "kind": "text"
+    },
+    "reference": {
+      "selector": "",
+      "kind": "attribute",
+      "attribute": "href"
+    }
+  },
+  "resolver": "browser",
+  "blockAds": false
+}

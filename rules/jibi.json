@@ -1,0 +1,44 @@
+{
+  "schema": 1,
+  "id": "native:jibi",
+  "name": "叽哔动漫 · Ruri",
+  "version": "1",
+  "baseUrl": "https://www.jibi.cc/",
+  "allowedOrigins": [
+    "https://www.jibi.cc"
+  ],
+  "search": {
+    "path": "/index.php/vod/search.html",
+    "method": "GET",
+    "parameters": {
+      "wd": "{query}"
+    },
+    "root": ".module-card-items",
+    "items": ".module-card-item-title a",
+    "title": {
+      "selector": "",
+      "kind": "text"
+    },
+    "reference": {
+      "selector": "",
+      "kind": "attribute",
+      "attribute": "href"
+    }
+  },
+  "catalog": {
+    "root": "body",
+    "roads": ".module-play-list-content",
+    "episodes": "a.module-play-list-link",
+    "title": {
+      "selector": "",
+      "kind": "text"
+    },
+    "reference": {
+      "selector": "",
+      "kind": "attribute",
+      "attribute": "href"
+    }
+  },
+  "resolver": "browser",
+  "blockAds": false
+}

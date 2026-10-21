@@ -1,0 +1,23 @@
+{
+  "schema": 1,
+  "id": "native:xifan-next",
+  "name": "稀饭 Next · Ruri",
+  "version": "1",
+  "baseUrl": "https://next.xifanacg.com/",
+  "allowedOrigins": ["https://next.xifanacg.com"],
+  "search": {
+    "path": "/search", "method": "GET", "parameters": {"q": "{query}"},
+    "acquisition": "browser",
+    "root": "body", "items": "main a[href^='/anime/']",
+    "title": {"selector": "p.font-medium", "kind": "text"},
+    "reference": {"selector": "", "kind": "attribute", "attribute": "href"}
+  },
+  "catalog": {
+    "format": "json", "nextDataKeys": ["anime", "sources"],
+    "root": "$", "roads": "$.sources[*]", "episodes": "$.episodes[*]",
+    "subject": {"selector": "$.anime.id", "kind": "json"},
+    "title": {"selector": "$.episode_number", "kind": "json", "template": "第{value}集"},
+    "reference": {"selector": "$.id", "kind": "json", "template": "/anime/{subject}/play/{value}"}
+  },
+  "resolver": "browser", "blockAds": false
+}

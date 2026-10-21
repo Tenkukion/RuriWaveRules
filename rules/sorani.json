@@ -1,0 +1,58 @@
+{
+  "schema": 1,
+  "id": "native:sorani",
+  "name": "sorani · Ruri",
+  "version": "1",
+  "baseUrl": "https://www.sorani.net/",
+  "allowedOrigins": [
+    "https://www.sorani.net",
+    "https://api.sorani.cc"
+  ],
+  "headers": {
+    "referer": "https://www.sorani.net/"
+  },
+  "search": {
+    "format": "json",
+    "path": "https://api.sorani.cc/sorani-cms/api/video",
+    "method": "GET",
+    "parameters": {
+      "page": "1",
+      "size": "50",
+      "keyword": "{query}",
+      "enabled": "true",
+      "sortMode": "latest",
+      "sortDesc": "false"
+    },
+    "root": "$.data",
+    "items": "$.records[*]",
+    "title": {
+      "selector": "$.title",
+      "kind": "json"
+    },
+    "reference": {
+      "selector": "$.id",
+      "kind": "json",
+      "template": "https://api.sorani.cc/sorani-cms/api/video/{value}"
+    }
+  },
+  "catalog": {
+    "format": "json",
+    "root": "$.data",
+    "roads": "$",
+    "episodes": "$.episodes[*]",
+    "subject": {
+      "selector": "$.id",
+      "kind": "json"
+    },
+    "title": {
+      "selector": "$.episodeLabel",
+      "kind": "json"
+    },
+    "reference": {
+      "selector": "$.episodeOrder",
+      "kind": "json",
+      "template": "https://www.sorani.net/anime/mal/{subject}/episode/{value}"
+    }
+  },
+  "blockAds": true
+}
