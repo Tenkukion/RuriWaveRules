@@ -4,6 +4,14 @@ Public activation authorized on 2026-10-21 for Tenkukion/RuriWaveRules and GitHu
 Pages. Actual publication/signature status is proved by the repository and its
 signed immutable releases, not by this authorization statement.
 
+Initial signed publication: `2026.10.21-1`, sequence `1`, from source
+`b79a2b912cd34e234e34d94e4c205c60df85cd5b`. The protected publication and Pages
+workflow completed on 2026-10-21. Distribution is available at
+<https://tenkukion.github.io/RuriWaveRules/latest.json>; immutable release files
+are under `releases/2026.10.21-1/`. Always verify signatures and validity instead
+of treating this README as a freshness assertion. Ordinary commits still do not
+publish a new rules release.
+
 Data-only source rules for the RuriWave NativeRule schema 1 interpreter.
 The application source, user data, internal reports and build/signing material
 do not belong in this repository.
@@ -92,7 +100,7 @@ recovery release must extend the representation/acceptance policy for the exact
 incident; no remote document is allowed to reset the stored floor. That emergency
 client migration is not implemented or claimed by this local preparation.
 
-## Workflow activation (not performed)
+## Workflow activation
 
 Ordinary pushes/PRs run read-only validation only. `publish.yml` is manual and
 additionally disabled until the owner sets `RULES_PUBLISH_ENABLED=true` and the
@@ -104,11 +112,12 @@ deploy can be retried using the already persisted complete artifact.
 
 Before activation approve public content/provenance/license, actual account,
 repository/branch push, Pages configuration, signing identity and storage. The
-prepared workflow proposes protected `rules-publish` and `github-pages`
+workflow uses protected `rules-publish` and `github-pages`
 environments, minimal job permissions, an encrypted environment secret
 `RULES_ED25519_KEY_PEM`, and public `RULES_KEY_ID` / `RULES_PUBLIC_KEY` variables.
-Those are configuration requirements, NOT permissions already granted or secrets
-created. Public-key bytes must match the independently accepted client pin.
+Those settings were configured only after the owner's explicit authorization.
+Secret values are not part of this repository. Public-key bytes must match the
+independently accepted client pin.
 Actions are pinned to official release commits. Private keys only enter a
 permission-restricted temporary runner file, never the artifact or Git tree.
 Each independently downloadable release carries its recipient MIT notice and,
