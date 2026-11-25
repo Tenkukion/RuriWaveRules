@@ -1,0 +1,44 @@
+{
+  "schema": 1,
+  "id": "native:k91",
+  "name": "555电影 · Ruri",
+  "version": "1",
+  "baseUrl": "https://555k91.com/",
+  "allowedOrigins": [
+    "https://555k91.com"
+  ],
+  "search": {
+    "method": "GET",
+    "path": "/vodsearch/-------------.html",
+    "parameters": {
+      "wd": "{query}"
+    },
+    "root": "html",
+    "items": ".module-card-item",
+    "title": {
+      "selector": ".module-card-item-title a",
+      "kind": "text"
+    },
+    "reference": {
+      "selector": "a.play-btn",
+      "kind": "attribute",
+      "attribute": "href"
+    }
+  },
+  "catalog": {
+    "root": "html",
+    "roads": ".play-tab-list.active",
+    "episodes": "a.module-play-list-link",
+    "title": {
+      "kind": "text",
+      "selector": ""
+    },
+    "reference": {
+      "kind": "attribute",
+      "selector": "",
+      "attribute": "href"
+    }
+  },
+  "resolver": "browser",
+  "blockAds": false
+}

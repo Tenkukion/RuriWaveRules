@@ -49,6 +49,10 @@ uses the site's second catalog slot, observed as the simplified Chinese
 track (`chs`) on the tested titles. A missing second slot yields no episodes.
 Install the entry explicitly from the online rule library.
 
+The Black Cat rule (`native:heimao`) was authored from the public search form, result titles and episode links on <https://www.bmddm.com/>. It follows the site's playback links marked for 播放Ⅱ. The older bmmdmm.com name identifies the same site. This rule configuration is covered by the repository MIT license.
+
+The 555 rule (`native:k91`) was authored from the public search form, the search card's Play link and the active episode panel on <https://555k91.com/>. The site chooses the default line per title. Line names observed include 极速蓝光-b and 极速蓝光-R. This rule configuration is covered by the repository MIT license.
+
 Yinghua (`native:yinhuadm`) was retired following reports of advertising during playback. Previous signed batches retain the original MIT-licensed rule. Locally installed copies can be disabled in source management.
 
 ## Installation contract

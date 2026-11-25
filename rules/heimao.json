@@ -1,0 +1,46 @@
+{
+  "schema": 1,
+  "id": "native:heimao",
+  "name": "黑猫动漫 · Ruri",
+  "version": "1",
+  "baseUrl": "https://www.bmddm.com/",
+  "allowedOrigins": [
+    "https://www.bmddm.com"
+  ],
+  "search": {
+    "method": "GET",
+    "path": "/s_all",
+    "parameters": {
+      "kw": "{query}",
+      "ex": "1"
+    },
+    "root": "html",
+    "items": ".lpic h2 a[href]",
+    "title": {
+      "kind": "attribute",
+      "selector": "",
+      "attribute": "title"
+    },
+    "reference": {
+      "kind": "attribute",
+      "selector": "",
+      "attribute": "href"
+    }
+  },
+  "catalog": {
+    "root": "html",
+    "roads": "body",
+    "episodes": ".movurl li a[href*=\"-1-\"]",
+    "title": {
+      "kind": "text",
+      "selector": ""
+    },
+    "reference": {
+      "kind": "attribute",
+      "selector": "",
+      "attribute": "href"
+    }
+  },
+  "resolver": "browser",
+  "blockAds": false
+}
