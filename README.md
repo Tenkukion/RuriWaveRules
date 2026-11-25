@@ -41,6 +41,13 @@ and long lists on <https://www.dcc3.com/detail/20336/> and
 <https://www.dcc3.com/detail/2742/> use the same per-line container.
 This configuration is covered by the repository MIT license.
 
+The Yinghua configuration (`native:yinhuadm`) uses the public search, empty
+results prompt and episode links at <https://www.yinhuadm.net/> under the
+repository MIT license. The catalogs for works 24492, 12535 and 29534
+expose different subsets of three numbered routes. The rule keeps their
+episodes separate and tries slot 2 before 1 and 3. For work 24492 episode 1,
+slot 2 played in the Windows client. Availability varies by work and route.
+
 ## Installation contract
 
 - New installations receive the fixed twelve offline; first six on, last six off.

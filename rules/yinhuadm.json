@@ -1,0 +1,49 @@
+{
+  "schema": 1,
+  "id": "native:yinhuadm",
+  "name": "樱花动漫 · Ruri",
+  "version": "1",
+  "baseUrl": "https://www.yinhuadm.net/",
+  "allowedOrigins": [
+    "https://www.yinhuadm.net"
+  ],
+  "search": {
+    "path": "/vch/.html",
+    "method": "GET",
+    "parameters": {
+      "wd": "{query}"
+    },
+    "root": ".module-card-items, .module-prompt .nofound",
+    "items": ".module-card-item-title a",
+    "title": {
+      "selector": "",
+      "kind": "text"
+    },
+    "reference": {
+      "selector": "",
+      "kind": "attribute",
+      "attribute": "href"
+    }
+  },
+  "catalog": {
+    "root": "html",
+    "roads": "body",
+    "episodes": ".module-play-list-content a.module-play-list-link",
+    "title": {
+      "selector": "",
+      "kind": "text"
+    },
+    "reference": {
+      "selector": "",
+      "kind": "attribute",
+      "attribute": "href"
+    },
+    "episodeGroups": [
+      ".module-play-list-content a.module-play-list-link[href*=\"-2-\"]",
+      ".module-play-list-content a.module-play-list-link[href*=\"-1-\"]",
+      ".module-play-list-content a.module-play-list-link[href*=\"-3-\"]"
+    ]
+  },
+  "resolver": "browser",
+  "blockAds": false
+}
