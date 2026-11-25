@@ -1,0 +1,26 @@
+{
+  "schema": 1,
+  "id": "native:mxdm",
+  "name": "MXdm · Ruri",
+  "version": "1",
+  "baseUrl": "https://www.dcc3.com/",
+  "allowedOrigins": ["https://www.dcc3.com"],
+  "search": {
+    "path": "/search/",
+    "method": "GET",
+    "parameters": {"wd": "{query}"},
+    "root": ".search.container",
+    "items": "h3 a[href]",
+    "title": {"selector": "", "kind": "text"},
+    "reference": {"selector": "", "kind": "attribute", "attribute": "href"}
+  },
+  "catalog": {
+    "root": ".playlist",
+    "roads": ".row > ul",
+    "episodes": "li a[href^='/play/']",
+    "title": {"selector": "", "kind": "text"},
+    "reference": {"selector": "", "kind": "attribute", "attribute": "href"}
+  },
+  "resolver": "browser",
+  "blockAds": false
+}

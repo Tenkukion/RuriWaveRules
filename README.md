@@ -35,6 +35,12 @@ Publishing is a separate explicit workflow, not an ordinary commit. All rule
 documents must pass the client interpreter contract before application bundling.
 Rules are not executable scripts and cannot grant new browser/network powers.
 
+The MXdm configuration (`native:mxdm`) was authored from the public search
+form, result links and episode lists at <https://www.dcc3.com/>. The short
+and long lists on <https://www.dcc3.com/detail/20336/> and
+<https://www.dcc3.com/detail/2742/> use the same per-line container.
+This configuration is covered by the repository MIT license.
+
 ## Installation contract
 
 - New installations receive the fixed twelve offline; first six on, last six off.

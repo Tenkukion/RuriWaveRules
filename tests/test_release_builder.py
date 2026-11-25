@@ -31,10 +31,13 @@ class BuilderTests(unittest.TestCase):
         with patch('sys.argv',args),contextlib.redirect_stdout(io.StringIO()): builder.main()
         return self.root/'out'/'releases'/version/'manifest.json'
 
-    def test_exact_twelve_deterministic_and_no_unsigned_latest(self):
+    def test_full_catalog_deterministic_and_no_unsigned_latest(self):
         manifest=self.build();first=manifest.read_bytes();self.build()
         self.assertEqual(manifest.read_bytes(),first)
-        self.assertEqual(len(json.loads(first)['rules']),12)
+        catalog = builder.read(self.root/'catalog.json')
+        self.assertEqual(
+            [row['id'] for row in json.loads(first)['rules']],
+            [row['id'] for row in catalog['rules']])
         self.assertFalse((self.root/'out/latest.json').exists())
 
     def test_changed_content_cannot_overwrite_existing_release(self):
@@ -58,6 +61,7 @@ class BuilderTests(unittest.TestCase):
         output=self.root/'client'
         self.build(extra=('--client-assets',output))
         manifest=builder.read(output/'manifest.json')
+        self.assertEqual([e['id'] for e in manifest['rules']], config['bootstrapIds'])
         self.assertEqual([e['defaultEnabled'] for e in manifest['rules']],[True]*6+[False]*6)
         self.assertEqual(len(manifest['publisherManifestSha256']),64)
 
@@ -66,7 +70,10 @@ class BuilderTests(unittest.TestCase):
         (self.root/'rules/moonci.json').unlink()
         (self.root/'catalog.json').write_bytes(builder.encoded(config))
         manifest=builder.read(self.build())
-        self.assertEqual(len(manifest['rules']),11);self.assertEqual(manifest['retired'],['native:moonci'])
+        self.assertEqual([e['id'] for e in manifest['rules']],
+                         [e['id'] for e in config['rules']])
+        self.assertNotIn('native:moonci', [e['id'] for e in manifest['rules']])
+        self.assertEqual(manifest['retired'], ['native:moonci'])
         with self.assertRaisesRegex(ValueError,'previously validated twelve-source'):self.build(extra=('--client-assets',self.root/'client'))
 
     def test_duplicate_json_and_rule_path_scope_rejected(self):
