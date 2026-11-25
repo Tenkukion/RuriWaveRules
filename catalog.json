@@ -73,6 +73,14 @@
       "maximumEngine": 1
     },
     {
+      "id": "native:giri",
+      "file": "rules/giri.json",
+      "defaultEnabled": true,
+      "ruleSchema": 1,
+      "minimumEngine": 1,
+      "maximumEngine": 1
+    },
+    {
       "id": "native:dm84",
       "file": "rules/DM84.json",
       "defaultEnabled": false,

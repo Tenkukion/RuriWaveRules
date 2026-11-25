@@ -41,6 +41,14 @@ and long lists on <https://www.dcc3.com/detail/20336/> and
 <https://www.dcc3.com/detail/2742/> use the same per-line container.
 This configuration is covered by the repository MIT license.
 
+The girigiri 愛動漫 configuration (`native:giri`) uses API and playback-page
+configuration from [Predidit/KazumiRules, giriGiriLove.json](https://github.com/Predidit/KazumiRules/blob/64ea35976c383a3a760eb23d744fcada076317ee/giriGiriLove.json).
+The upstream MIT license and copyright notice are included in
+[notices/LICENSE.KazumiRules](notices/LICENSE.KazumiRules). The NativeRule
+uses the site's second catalog slot, observed as the simplified Chinese
+track (`chs`) on the tested titles. A missing second slot yields no episodes.
+Install the entry explicitly from the online rule library.
+
 Yinghua (`native:yinhuadm`) was retired following reports of advertising during playback. Previous signed batches retain the original MIT-licensed rule. Locally installed copies can be disabled in source management.
 
 ## Installation contract

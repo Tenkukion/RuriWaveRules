@@ -1,0 +1,55 @@
+{
+  "schema": 1,
+  "id": "native:giri",
+  "name": "girigiri 愛動漫 · Ruri",
+  "version": "1",
+  "baseUrl": "https://ani.girigirilove.com/",
+  "allowedOrigins": [
+    "https://ani.girigirilove.com",
+    "https://m3u8.girigirilove.com",
+    "https://pl.girigirilove.com"
+  ],
+  "search": {
+    "method": "GET",
+    "path": "https://m3u8.girigirilove.com/api.php/Vod/get_list",
+    "parameters": {
+      "vod_name": "{query}",
+      "offset": "0",
+      "limit": "24"
+    },
+    "format": "json",
+    "root": "$.info",
+    "items": "$.rows[*]",
+    "title": {
+      "kind": "json",
+      "selector": "$.vod_name"
+    },
+    "reference": {
+      "kind": "json",
+      "selector": "$.vod_id",
+      "template": "https://m3u8.girigirilove.com/api.php/Vod/get_detail?vod_id={value}"
+    }
+  },
+  "catalog": {
+    "format": "json",
+    "root": "$.info",
+    "delimited": {
+      "roadNames": "$.vod_play_from",
+      "roadEpisodes": "$.vod_play_url"
+    },
+    "roads": "$.roads[1]",
+    "episodes": "$.episodes[*]",
+    "title": {
+      "kind": "json",
+      "selector": "$.title"
+    },
+    "reference": {
+      "kind": "json",
+      "selector": "$.url",
+      "httpUrl": true,
+      "template": "https://pl.girigirilove.com/addons/aplyer/atom.php?key=0&url={value}"
+    }
+  },
+  "resolver": "browser",
+  "blockAds": false
+}
