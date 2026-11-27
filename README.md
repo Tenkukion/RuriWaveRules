@@ -57,13 +57,13 @@ Yinghua (`native:yinhuadm`) was retired following reports of advertising during 
 
 ## Installation contract
 
-- New installations receive the fixed twelve offline; first six on, last six off.
+- The offline bootstrap contains the fixed twelve. All sixteen current catalog entries default to enabled on installation.
 - New library entries require explicit installation. Update never installs them.
 - Installed updates preserve enablement. Explicit reinstall adopts the install
   default and clears the deletion exclusion, without duplicate source identity.
 - Retirement stops distribution, not local playback, enablement or installation.
 - Unknown ownership/local edits are conflicts, never implicitly overwritten.
-- Only the installed, still-distributed managed subsequence follows remote order.
+- Clients adopting the 0.4.0 preference migration apply the approved order and enable installed official sources once. Later user changes to ordering and switches are retained.
 - Playback keeps its source-rule snapshot across episode changes; no hot swap.
 
 ## Trust, freshness, replacement and recovery

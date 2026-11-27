@@ -54,7 +54,7 @@ class BuilderTests(unittest.TestCase):
         rule['version']='99.0';path.write_bytes(builder.encoded(rule))
         self.build('test-2','2',('--previous-manifest',first))
 
-    def test_fixed_bootstrap_defaults_do_not_follow_remote_default_changes(self):
+    def test_bootstrap_defaults_follow_catalog(self):
         config=builder.read(self.root/'catalog.json')
         for entry in config['rules']:entry['defaultEnabled']=not entry['defaultEnabled']
         (self.root/'catalog.json').write_bytes(builder.encoded(config))
@@ -62,7 +62,7 @@ class BuilderTests(unittest.TestCase):
         self.build(extra=('--client-assets',output))
         manifest=builder.read(output/'manifest.json')
         self.assertEqual([e['id'] for e in manifest['rules']], config['bootstrapIds'])
-        self.assertEqual([e['defaultEnabled'] for e in manifest['rules']],[True]*6+[False]*6)
+        self.assertEqual([e['defaultEnabled'] for e in manifest['rules']],[next(e['defaultEnabled'] for e in config['rules'] if e['id']==k) for k in config['bootstrapIds']])
         self.assertEqual(len(manifest['publisherManifestSha256']),64)
 
     def test_retirement_can_publish_without_silently_changing_bootstrap(self):
